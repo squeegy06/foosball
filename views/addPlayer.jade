@@ -1,5 +1,5 @@
-form(action='/addPlayer', method='POST')
+form(action='/players/add', method='POST')
 	div.form-group
 		label(for='name') Player Name
-		input.form-control#name(type='text', placeholder='Enter Name', maxlength='50', name='name', data-valid='/checkName')
+		input.form-control#name(type='text', placeholder='Enter Name', maxlength='50', name='name', data-valid='/players/checkName')
 	button.btn.btn-default(type='submit') Submit
