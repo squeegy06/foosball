@@ -25,3 +25,5 @@ Finally, run the database.sql file to setup your database.
 ```
 mysql -u root -p < database.sql
 ```
+
+Eventually I'll use a better method for database management, you're welcome to create your own database manually if you want.
