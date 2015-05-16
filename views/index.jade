@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div.row.row-offcanvas.row-offcanvas-left#container
+    div.col-md-4.sidebar-offcanvas#menu
+      ul.nav.nav-pills.nav-stacked
+        li
+          a(href='/addPlayer') Add Player
+        li
+          a(href='/players') Manage Players
+        li
+          a(href='/createMatch') Create Match
+        li
+          a(href="/matchHistory") Match History
+          
+    div.col-md-8#content
