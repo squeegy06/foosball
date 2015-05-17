@@ -1,0 +1,44 @@
+ul.list-group#players
+	each player in players
+		if player.deleted
+			li.list-group-item
+				button.btn.btn-default(data-player=player.id)
+					del= player.name + '(' + player.id + ')'
+		else
+			li.list-group-item
+				button.btn.btn-default(data-player=player.id)= player.name + '(' + player.id + ')'
+div.modal.fade#player-modal
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(data-dismiss="modal", aria-label="Close")
+				span(aria-hidden="true") &times;
+				h4.modal-title#player-name
+			div.modal-body#player-data
+			div.modal-footer#player-footer
+			
+script(type='text/javascript').
+	$('#players').on('click', 'button', function(e){
+		e.preventDefault();
+		
+		var player_id = $(this).data('player');
+		var container = $(this).closest('#container');
+		var player_modal = container.find('#player-modal');
+		
+		$.ajax({
+			url: '/players/player/' + player_id + '?json=1',
+			dataType: 'json'
+		}).done(function(msg){
+			player_modal.find('#player-name').html(msg.player_name);
+			player_modal.find('#player-data').html(msg.player_body);
+			player_modal.find('#player-footer').html(msg.player_footer);
+			
+			player_modal.modal('show');
+		}).fail(function(msg){
+			var html = '<div class="alert alert-danger alert-dismissible"><ul class="list-unstyled">'
+				+ '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+				+ '<li>' + msg.responseText + '</li></ul></div>';
+			container.prepend(html);
+		});
+	});
+		

@@ -6,3 +6,8 @@
   border-right: solid 1px #d1d1d1;
   background: #f1f1f1;
 }
+
+#player-modal #player-footer form{
+  float: right;
+  padding-left: 4px;
+}
